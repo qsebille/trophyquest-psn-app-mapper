@@ -1,7 +1,7 @@
 package com.trophyquest
 
 import com.trophyquest.config.JobArgs
-import com.trophyquest.jobs.UserProfileJob
+import com.trophyquest.jobs.{GameJob, UserProfileJob}
 import org.apache.log4j.Logger
 import org.apache.spark.sql.SparkSession
 
@@ -13,7 +13,7 @@ object TrophyQuestMapperMain {
     logger.info(s"START PSN Mapper with args : ${args.mkString(" ")}")
 
     val spark = SparkSession.builder()
-      .appName("TrophyQuest Transform")
+      .appName("TrophyQuest PSN Mapper")
       .master("local[*]")
       .getOrCreate()
 
@@ -24,6 +24,7 @@ object TrophyQuestMapperMain {
 
     jobName match {
       case "user_profile" => new UserProfileJob(spark).run()
+      case "game" => new GameJob(spark).run()
       case _ => throw new NotImplementedError(s"No job '$jobName' implemented")
     }
 
