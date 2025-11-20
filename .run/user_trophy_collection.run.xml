@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="user_trophy_collection" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.trophyquest.TrophyQuestMapperMain" />
+    <module name="trophyquest-psn-app-mapper.main" />
+    <option name="PROGRAM_PARAMETERS" value="--jobName user_trophy_collection" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.trophyquest.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
