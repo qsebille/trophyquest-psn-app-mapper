@@ -1,7 +1,7 @@
 package com.trophyquest
 
 import com.trophyquest.config.JobArgs
-import com.trophyquest.jobs.{GameJob, UserProfileJob}
+import com.trophyquest.jobs.{GameJob, TrophyCollectionJob, UserProfileJob}
 import org.apache.log4j.Logger
 import org.apache.spark.sql.SparkSession
 
@@ -23,8 +23,9 @@ object TrophyQuestMapperMain {
     logger.info(s"Using job name: $jobName")
 
     jobName match {
-      case "user_profile" => new UserProfileJob(spark).run()
       case "game" => new GameJob(spark).run()
+      case "trophy_collection" => new TrophyCollectionJob(spark).run()
+      case "user_profile" => new UserProfileJob(spark).run()
       case _ => throw new NotImplementedError(s"No job '$jobName' implemented")
     }
 
