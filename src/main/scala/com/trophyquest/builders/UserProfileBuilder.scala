@@ -16,6 +16,7 @@ class UserProfileBuilder(spark: SparkSession) {
         $"id" as "user_psn_id",
         $"user_uuid",
         $"name",
+        $"avatar_url",
       )
   }
 

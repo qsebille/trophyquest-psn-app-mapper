@@ -19,6 +19,7 @@ class UserProfileJob(spark: SparkSession) {
       .select(
         $"user_uuid" as "id",
         $"name",
+        $"avatar_url",
       )
       .persist()
 
