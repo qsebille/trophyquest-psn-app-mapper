@@ -13,6 +13,10 @@ object StringTransformUtils {
   val toSlugUdf: UserDefinedFunction = udf((input: String) => toSlug(input))
 
   private def toSlug(input: String): String = {
+    if (input == null) {
+      return null
+    }
+
     Normalizer
       .normalize(input, Normalizer.Form.NFD)
       .replaceAll("\\p{M}", "")
@@ -23,6 +27,10 @@ object StringTransformUtils {
   }
 
   private def toUuid(input: String): String = {
+    if (input == null) {
+      return null
+    }
+
     UUID.nameUUIDFromBytes(input.getBytes(StandardCharsets.UTF_8)).toString
   }
 
