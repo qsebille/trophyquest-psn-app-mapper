@@ -4,8 +4,6 @@ import com.trophyquest.config.JobArgs
 import com.trophyquest.jobs._
 import org.apache.log4j.Logger
 import org.apache.spark.sql.SparkSession
-import org.joda.time.DateTimeUtils
-
 import java.time.Duration
 
 object TrophyQuestMapperMain {
@@ -14,7 +12,7 @@ object TrophyQuestMapperMain {
 
   def main(args: Array[String]): Unit = {
     logger.info(s"START PSN Mapper with args : ${args.mkString(" ")}")
-    val startTime: Long = DateTimeUtils.currentTimeMillis()
+    val startTime: Long = System.currentTimeMillis()
 
     val spark = SparkSession.builder()
       .appName("TrophyQuest PSN Mapper")
@@ -47,7 +45,7 @@ object TrophyQuestMapperMain {
 
     spark.stop()
 
-    val endTime: Long = DateTimeUtils.currentTimeMillis()
+    val endTime: Long = System.currentTimeMillis()
     val elapsedTime: Duration = Duration.ofMillis(endTime - startTime)
     logger.info(s"Job ended in ${elapsedTime.toSeconds} seconds")
     logger.info(s"PSN Mapper job $jobName: SUCCESS")
