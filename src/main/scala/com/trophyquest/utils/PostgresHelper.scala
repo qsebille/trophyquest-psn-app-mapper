@@ -13,9 +13,12 @@ class PostgresHelper(spark: SparkSession) {
     val connection = DriverManager.getConnection(JobConfig.postgres.url, JobConfig.postgres.user, JobConfig.postgres.password)
     try {
       val statement = connection.createStatement()
-      statement.executeUpdate(s"TRUNCATE TABLE $tableName CASCADE")
-      statement.close()
-      logger.info(s"Truncate table $tableName: success")
+      try {
+        statement.executeUpdate(s"TRUNCATE TABLE $tableName CASCADE")
+        logger.info(s"Truncate table $tableName: success")
+      } finally {
+        statement.close()
+      }
     } finally {
       connection.close()
     }
